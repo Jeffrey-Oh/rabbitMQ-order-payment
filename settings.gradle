@@ -1,1 +1,8 @@
 rootProject.name = 'rabbitMQ-order-payment'
+include(
+    'common',
+    'domain',
+    'order-api',
+    'order-consumer',
+    'payment-consumer'
+)
