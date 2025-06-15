@@ -14,7 +14,7 @@ public class OrderEntity extends BaseDateColumn {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", nullable = false)
-    private UserEntity userId;
+    private UserEntity user;
 
     @Column(name = "totalAmount", nullable = false)
     private int totalAmount;

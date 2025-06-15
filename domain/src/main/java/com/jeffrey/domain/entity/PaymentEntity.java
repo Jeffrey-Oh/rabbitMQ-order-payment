@@ -1,6 +1,7 @@
 package com.jeffrey.domain.entity;
 
 import com.jeffrey.common.PaymentMethod;
+import com.jeffrey.common.PaymentStatus;
 import com.jeffrey.domain.entity.shared.CreatedAtColumn;
 import jakarta.persistence.*;
 
@@ -24,7 +25,8 @@ public class PaymentEntity extends CreatedAtColumn {
     @Column(name = "amount", nullable = false)
     private Long amount;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String status;
+    private PaymentStatus status;
 
 }
