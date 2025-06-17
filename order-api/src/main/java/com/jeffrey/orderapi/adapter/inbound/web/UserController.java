@@ -1,8 +1,10 @@
 package com.jeffrey.orderapi.adapter.inbound.web;
 
 import com.jeffrey.orderapi.adapter.inbound.web.dto.CreateUserRequest;
+import com.jeffrey.orderapi.adapter.inbound.web.dto.LoginUserRequest;
 import com.jeffrey.orderapi.application.usecase.UserUseCase;
-import com.jeffrey.orderapi.application.usecase.result.CreatedUserResult;
+import com.jeffrey.orderapi.application.usecase.command.LoginUserCommand;
+import com.jeffrey.orderapi.application.usecase.result.LoggedInUserResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,11 +19,19 @@ public class UserController {
     private final UserUseCase userUseCase;
 
     @PostMapping
-    public CreatedUserResult create(
+    public void create(
         @RequestBody CreateUserRequest request
     ) {
         CreateUserRequest.CreateUserCommand command = request.toCommand();
-        return userUseCase.createUser(command);
+        userUseCase.createUser(command);
+    }
+
+    @PostMapping("/login")
+    public LoggedInUserResult login(
+        @RequestBody LoginUserRequest request
+    ) {
+        LoginUserCommand command = request.toCommand();
+        return userUseCase.login(command);
     }
 
 }

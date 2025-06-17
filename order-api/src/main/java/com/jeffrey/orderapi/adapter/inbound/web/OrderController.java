@@ -1,6 +1,6 @@
 package com.jeffrey.orderapi.adapter.inbound.web;
 
-import com.jeffrey.common.OrderStatus;
+import com.jeffrey.common.enums.OrderStatus;
 import com.jeffrey.orderapi.adapter.inbound.web.dto.CreateOrderRequest;
 import com.jeffrey.orderapi.adapter.inbound.web.dto.CreateOrderResponse;
 import com.jeffrey.orderapi.application.usecase.OrderUseCase;

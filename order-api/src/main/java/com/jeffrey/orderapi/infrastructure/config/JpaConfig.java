@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +15,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Slf4j
 @Configuration
 @EnableJpaAuditing
-@EnableJpaRepositories(
-    basePackages = "com.jeffrey"
-)
+@EntityScan(basePackages = "com.jeffrey")
+@EnableJpaRepositories(basePackages = "com.jeffrey")
 @RequiredArgsConstructor
 public class JpaConfig implements ApplicationListener<ApplicationReadyEvent> {
 

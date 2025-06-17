@@ -1,6 +1,6 @@
 package com.jeffrey.orderapi.adapter.inbound.web.dto;
 
-import com.jeffrey.common.PaymentMethod;
+import com.jeffrey.common.enums.PaymentMethod;
 import com.jeffrey.orderapi.application.usecase.command.CreateOrderCommand;
 
 import java.util.List;

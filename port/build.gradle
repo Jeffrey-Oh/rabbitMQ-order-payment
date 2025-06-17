@@ -1,0 +1,9 @@
+jar { enabled = true }
+
+bootJar { enabled = false }
+
+dependencies {
+    implementation project(':common-core')
+    implementation project(':common-dto')
+    implementation project(":domain")
+}

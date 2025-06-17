@@ -3,5 +3,5 @@ jar { enabled = true }
 bootJar { enabled = false }
 
 dependencies {
-	implementation project(':common')
+	implementation project(':common-core')
 }

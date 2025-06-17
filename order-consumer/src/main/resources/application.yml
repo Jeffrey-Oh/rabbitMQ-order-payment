@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:13306/order_payment?serverTimezone=Asia/Seoul&useSSL=false
+    username: mysqluser
+    password: mysqlpw
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate # ??? Entity? ???? create? ??
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    jdbc:
+      repositories:
+        enabled: false
+    redis:
+      host: localhost
+      port: 16379
+      repositories:
+        enabled: false
+
+  rabbitmq:
+    host: localhost
+    port: 15672
+    username: guest
+    password: guest
+    publisher-returns: true

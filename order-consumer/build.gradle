@@ -3,12 +3,15 @@ plugins {
 }
 
 dependencies {
-    implementation project(':common')
+    implementation project(':common-core')
+    implementation project(':common-dto')
+    implementation project(":port")
     implementation project(":domain")
+    implementation project(":storage")
+    implementation project(":message-rabbitmq")
 
     implementation 'org.springframework.boot:spring-boot-starter'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 }
 
 docker {

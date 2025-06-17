@@ -2,10 +2,10 @@ package com.jeffrey.orderapi.infrastructure.jwt;
 
 import com.jeffrey.domain.vo.CreatedAt;
 import com.jeffrey.domain.vo.UpdatedAt;
-import com.jeffrey.orderapi.entity.UserEntity;
+import com.jeffrey.storage.entity.UserEntity;
 import com.jeffrey.domain.User;
 import com.jeffrey.domain.vo.Email;
-import com.jeffrey.orderapi.repository.UserJpaRepository;
+import com.jeffrey.storage.repository.UserJpaRepository;
 import com.jeffrey.orderapi.infrastructure.config.CustomUserDetails;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

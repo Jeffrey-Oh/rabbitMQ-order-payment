@@ -1,7 +1,7 @@
 package com.jeffrey.orderapi.infrastructure.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jeffrey.orderapi.repository.UserJpaRepository;
+import com.jeffrey.storage.repository.UserJpaRepository;
 import com.jeffrey.orderapi.infrastructure.jwt.JwtFilter;
 import com.jeffrey.orderapi.infrastructure.jwt.JwtTokenProvider;
 import jakarta.servlet.http.HttpServletResponse;

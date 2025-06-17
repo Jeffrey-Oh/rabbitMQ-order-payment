@@ -1,7 +1,7 @@
 package com.jeffrey.domain;
 
-import com.jeffrey.common.PaymentMethod;
-import com.jeffrey.common.PaymentStatus;
+import com.jeffrey.common.enums.PaymentMethod;
+import com.jeffrey.common.enums.PaymentStatus;
 import com.jeffrey.domain.shared.CreatedDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

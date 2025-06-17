@@ -17,7 +17,12 @@ public class User extends BaseDate {
     private String passwordHash;
     private String refreshToken;
 
+    public void loggedIn(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
+
     public void logout() {
         this.refreshToken = null;
     }
+
 }

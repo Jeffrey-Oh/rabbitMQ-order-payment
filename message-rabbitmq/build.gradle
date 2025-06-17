@@ -1,0 +1,13 @@
+jar { enabled = true }
+
+bootJar { enabled = false }
+
+dependencies {
+    implementation project(':common-core')
+    implementation project(':common-dto')
+    implementation project(":port")
+    implementation project(":domain")
+
+    api 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.0'
+}

@@ -16,4 +16,12 @@ public class OrderItem extends CreatedDate {
     private int quantity;
     private int price;
     private int totalPrice;
+
+    public void setOrder(Order order) {
+        this.order = order;
+        if (order != null && !order.getOrderItems().contains(this)) {
+            order.getOrderItems().add(this);
+        }
+    }
+
 }

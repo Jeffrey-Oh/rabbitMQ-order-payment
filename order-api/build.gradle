@@ -3,25 +3,22 @@ plugins {
 }
 
 dependencies {
-    implementation project(":common")
+    implementation project(":common-core")
+    implementation project(":common-dto")
+    implementation project(":port")
     implementation project(":domain")
+    implementation project(":storage")
+    implementation project(":message-rabbitmq")
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-amqp'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.amqp:spring-rabbit-test'
 
     // spring security
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // jwt
     implementation 'com.auth0:java-jwt:4.5.0'
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 }
 
 docker {

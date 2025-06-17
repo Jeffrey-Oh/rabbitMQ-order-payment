@@ -1,6 +1,6 @@
 package com.jeffrey.orderapi.application.usecase.command;
 
-import com.jeffrey.common.PaymentMethod;
+import com.jeffrey.common.enums.PaymentMethod;
 
 import java.util.List;
 

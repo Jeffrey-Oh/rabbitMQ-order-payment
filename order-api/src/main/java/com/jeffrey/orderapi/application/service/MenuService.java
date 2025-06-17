@@ -1,9 +1,9 @@
 package com.jeffrey.orderapi.application.service;
 
 import com.jeffrey.domain.Menu;
-import com.jeffrey.orderapi.application.port.out.MenuCommandPort;
 import com.jeffrey.orderapi.application.usecase.MenuUseCase;
 import com.jeffrey.orderapi.application.usecase.command.CreateMenuCommand;
+import com.jeffrey.port.out.MenuCommandPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
