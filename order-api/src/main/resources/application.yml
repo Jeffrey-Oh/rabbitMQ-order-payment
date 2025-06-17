@@ -1,1 +1,60 @@
-spring.application.name=order-api
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:default}
+
+  datasource:
+    url: jdbc:mysql://localhost:13306/order_payment?serverTimezone=Asia/Seoul&useSSL=false
+    username: mysqluser
+    password: mysqlpw
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate # 새로운 Entity가 추가되면 create로 추가
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  data:
+    jdbc:
+      repositories:
+        enabled: false
+    redis:
+      host: localhost
+      port: 16379
+      repositories:
+        enabled: false
+
+  rabbitmq:
+    host: localhost
+    port: 15672
+    username: guest
+    password: guest
+    publisher-returns: true
+
+  web:
+    resources:
+      add-mappings: false
+
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+      schema-locations: classpath:schema.sql
+
+aes:
+  key: "wYazoUmijer2aVmDHtQnald8WVXA4OYZEnRHnxdysow="
+  iv: "c6357272ead57a17"
+
+jwt:
+  access-secret: "X9xbjATbMItJidFndEr+Yz9DJEx0SDMtK5Kl0pPBrk4="
+  refresh-secret: "1iWMvMk2jyhA9Otz1mSSbJp10AMnVfOBX/u3VI47aR0="
+  access-expires-time: 7200 # 2 시간
+  refresh-expires-time: 1209600 # 2 주
+
+logging:
+  level:
+    root: info

@@ -1,28 +1,29 @@
 -- 사용자 테이블
-CREATE TABLE user
+CREATE TABLE IF NOT EXISTS user
 (
     userId       BIGINT AUTO_INCREMENT PRIMARY KEY,
     username     VARCHAR(50)  NOT NULL UNIQUE,
     email        VARCHAR(255) NOT NULL UNIQUE,
     passwordHash VARCHAR(255) NOT NULL,
+    refreshToken VARCHAR(500) DEFAULT NULL,
     createdAt    DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedAt    DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- 메뉴 테이블
-CREATE TABLE menu
+CREATE TABLE IF NOT EXISTS menu
 (
     menuId      BIGINT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(100) NOT NULL,
     description TEXT,
     price       INT          NOT NULL,
-    isAvailable BOOLEAN      NOT NULL DEFAULT TRUE,
+    available   BOOLEAN      NOT NULL DEFAULT TRUE,
     createdAt   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedAt   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- 주문 테이블
-CREATE TABLE `order`
+CREATE TABLE IF NOT EXISTS `order`
 (
     orderId     BIGINT AUTO_INCREMENT PRIMARY KEY,
     userId      BIGINT      NOT NULL,
@@ -35,7 +36,7 @@ CREATE TABLE `order`
 );
 
 -- 주문 아이템 테이블
-CREATE TABLE orderItem
+CREATE TABLE IF NOT EXISTS orderItem
 (
     orderItemId BIGINT AUTO_INCREMENT PRIMARY KEY,
     orderId     BIGINT   NOT NULL,
@@ -49,7 +50,7 @@ CREATE TABLE orderItem
 );
 
 -- 결제 테이블 (external PG 가정 없이 로컬 테스트용)
-CREATE TABLE payment
+CREATE TABLE IF NOT EXISTS payment
 (
     paymentId BIGINT AUTO_INCREMENT PRIMARY KEY,
     orderId   BIGINT      NOT NULL,

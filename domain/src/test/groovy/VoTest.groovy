@@ -1,7 +1,7 @@
-import com.jeffrey.domain.model.User
-import com.jeffrey.domain.model.vo.CreatedAt
-import com.jeffrey.domain.model.vo.Email
-import com.jeffrey.domain.model.vo.UpdatedAt
+import com.jeffrey.domain.User
+import com.jeffrey.domain.vo.CreatedAt
+import com.jeffrey.domain.vo.Email
+import com.jeffrey.domain.vo.UpdatedAt
 import spock.lang.Specification
 
 import java.time.LocalDateTime
