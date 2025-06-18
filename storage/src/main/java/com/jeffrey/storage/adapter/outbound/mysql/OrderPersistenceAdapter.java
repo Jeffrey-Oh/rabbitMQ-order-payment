@@ -24,7 +24,13 @@ public class OrderPersistenceAdapter implements OrderCommandPort, OrderQueryPort
     }
 
     @Override
+    public Order lockFindByOrderId(Long orderId) {
+        return orderMapper.toDomain(orderJpaRepository.lockFindByOrderId(orderId).orElse(null));
+    }
+
+    @Override
     public Order findByOrderId(Long orderId) {
+        System.out.println("Finding order by ID: " + orderId);
         return orderMapper.toDomain(orderJpaRepository.findByOrderId(orderId).orElse(null));
     }
 

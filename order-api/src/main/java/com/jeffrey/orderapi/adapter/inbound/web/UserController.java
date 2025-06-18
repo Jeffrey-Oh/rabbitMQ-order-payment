@@ -6,6 +6,8 @@ import com.jeffrey.orderapi.application.usecase.UserUseCase;
 import com.jeffrey.orderapi.application.usecase.command.LoginUserCommand;
 import com.jeffrey.orderapi.application.usecase.result.LoggedInUserResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +21,12 @@ public class UserController {
     private final UserUseCase userUseCase;
 
     @PostMapping
-    public void create(
+    public ResponseEntity<Void> create(
         @RequestBody CreateUserRequest request
     ) {
         CreateUserRequest.CreateUserCommand command = request.toCommand();
         userUseCase.createUser(command);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/login")

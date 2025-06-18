@@ -1,4 +1,4 @@
-rootProject.name = 'rabbitMQ-order-payment'
+rootProject.name = 'rabbitmq-order-payment'
 include(
     'common-core',
     'common-dto',

@@ -22,7 +22,8 @@ public class AuthUserIdResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().equals(AuthUserId.class);
+        return parameter.hasParameterAnnotation(AuthUserId.class) &&
+            (parameter.getParameterType().equals(Long.class) || parameter.getParameterType().equals(long.class));
     }
 
     @Override

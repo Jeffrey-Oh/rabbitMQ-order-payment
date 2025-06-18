@@ -23,7 +23,7 @@ allprojects {
     }
 
     group = 'com.jeffrey'
-    version = '0.0.1'
+    version = '1.0.0'
 
     repositories {
         mavenCentral()
@@ -50,6 +50,9 @@ subprojects {
         // Spock
         testImplementation("org.spockframework:spock-core:2.4-M6-groovy-4.0")
         testImplementation("org.spockframework:spock-spring:2.4-M6-groovy-4.0")
+
+        implementation 'io.micrometer:micrometer-registry-prometheus'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
     }
 
     tasks.named('test') {

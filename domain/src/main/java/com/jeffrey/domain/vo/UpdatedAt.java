@@ -13,9 +13,6 @@ public class UpdatedAt {
             this.value = null;
             return;
         }
-        if (value.isAfter(LocalDateTime.now())) {
-            throw new IllegalArgumentException("UpdatedAt cannot be in the future: " + value);
-        }
         this.value = value;
     }
 }

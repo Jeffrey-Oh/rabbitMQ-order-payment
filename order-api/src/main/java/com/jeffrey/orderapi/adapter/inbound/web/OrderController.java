@@ -8,10 +8,7 @@ import com.jeffrey.orderapi.infrastructure.annotation.AuthUserId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,5 +26,15 @@ public class OrderController {
         CreateOrderResponse resp = new CreateOrderResponse(orderId, OrderStatus.CREATED);
         return ResponseEntity.status(HttpStatus.CREATED).body(resp);
     }
+
+    @GetMapping("/polling/{orderId}")
+    public ResponseEntity<OrderStatus> pollingOrderStatus(
+        @AuthUserId Long userId,
+        @PathVariable Long orderId
+    ) {
+        OrderStatus status = orderUseCase.pollingOrderStatus(userId, orderId);
+        return ResponseEntity.ok(status);
+    }
+
 }
 

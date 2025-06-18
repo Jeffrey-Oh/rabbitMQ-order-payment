@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'order-api'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['order-api:9000']
+
+  - job_name: 'order-consumer'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['order-consumer:9001']
+
+  - job_name: 'payment-consumer'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['payment-consumer:9002']

@@ -1,5 +1,6 @@
 package com.jeffrey.orderapi.application.service;
 
+import com.jeffrey.common.enums.OrderStatus;
 import com.jeffrey.domain.Order;
 import com.jeffrey.domain.OrderItem;
 import com.jeffrey.domain.User;
@@ -9,6 +10,7 @@ import com.jeffrey.orderapi.application.usecase.command.CreateOrderCommand;
 import com.jeffrey.orderapi.utils.AuthUserProvider;
 import com.jeffrey.port.out.MenuQueryPort;
 import com.jeffrey.port.out.OrderCommandPort;
+import com.jeffrey.port.out.OrderQueryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ public class OrderService implements OrderUseCase {
     private final OrderCommandPort orderCommandPort;
     private final MenuQueryPort menuQueryPort;
     private final ApplicationEventPublisher eventPublisher;
+    private final OrderQueryPort orderQueryPort;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -50,8 +53,17 @@ public class OrderService implements OrderUseCase {
         save.setOrderItems(orderItems);
 
         eventPublisher.publishEvent(new OrderCreatedEvent(save, command.paymentMethod()));
-        System.out.println("메시지 발행함");
 
         return save.getOrderId();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public OrderStatus pollingOrderStatus(Long userId, Long orderId) {
+        Order order = orderQueryPort.findByOrderId(orderId);
+        if (order != null && order.getUser().getUserId().equals(userId)) {
+            return order.getStatus();
+        }
+        throw new IllegalArgumentException("Order not found or user does not have permission to access this order.");
     }
 }

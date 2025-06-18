@@ -4,7 +4,6 @@ import com.jeffrey.commondto.rabbitmq.dto.OrderMessage;
 import com.jeffrey.commondto.rabbitmq.dto.PaymentMessage;
 import com.jeffrey.domain.Order;
 import com.jeffrey.orderconsumer.application.usecase.OrderUseCase;
-import com.jeffrey.port.out.OrderMessagePublisher;
 import com.jeffrey.port.out.OrderCommandPort;
 import com.jeffrey.port.out.OrderQueryPort;
 import com.jeffrey.port.out.PaymentMessagePublisher;
@@ -28,7 +27,7 @@ public class OrderService implements OrderUseCase {
     @Transactional(rollbackFor = Exception.class)
     public void confirm(OrderMessage orderMessage) {
         // 1. 주문 확인
-        Order order = orderQueryPort.findByOrderId(orderMessage.orderId());
+        Order order = orderQueryPort.lockFindByOrderId(orderMessage.orderId());
         if (order == null) {
             throw new IllegalArgumentException("Order not found: " + orderMessage.orderId());
         }
@@ -54,7 +53,7 @@ public class OrderService implements OrderUseCase {
         log.info("📥 Completed payment for order ID: {}, transaction ID: {}", orderId, transactionId);
 
         // 1. 주문 조회
-        Order order = orderQueryPort.findByOrderId(orderId);
+        Order order = orderQueryPort.lockFindByOrderId(orderId);
         if (order == null) {
             throw new IllegalArgumentException("Order not found: " + orderId);
         }
